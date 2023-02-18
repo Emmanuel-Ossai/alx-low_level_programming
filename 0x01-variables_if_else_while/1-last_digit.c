@@ -25,7 +25,7 @@ int main(void)
 	}
 	if (m == 0)
 	{
-		printf("and is zero");
+		printf("and is 0");
 	}
 	if (m < 6 && m != 0)
 	{

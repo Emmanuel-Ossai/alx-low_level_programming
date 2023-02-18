@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 /**
  * main - C program that prints the size of various will
  * assign a random number to the variable n each time it is executed
@@ -12,7 +13,7 @@ int main(void)
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	printf("%d", &n);
+	printf(n);
 
 	if (n > 0)
 		printf("is positive\n");

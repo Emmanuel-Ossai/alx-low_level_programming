@@ -2,8 +2,8 @@
 #include <time.h>
 #include <stdio.h>
 /**
- * main - C program that prints the size of various will
- * assign a random number to the variable n each time it is executed
+ * main - C program that assign a random number to the
+ * variable n each time it is executed and prints n
  * Return: 0
 */
 
@@ -13,16 +13,15 @@ int main(void)
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	printf(n);
 
 	if (n > 0)
-		printf("is positive\n");
+		printf("%d is positive\n", n);
 
 	else if (n == 0)
-		printf("is zero\n");
+		printf("%d is zero\n", n);
 
-	else if (n < 0)
-		printf("is negative\n");
+	else
+		printf("%d is negative\n", n);
 
 	return (0);
 }

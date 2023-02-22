@@ -1,18 +1,23 @@
-#include <stdio.h>
-#include <main.h>
+#include "main.h"
 
 /**
- * main - C program that assign a random number to the
- * variable n each time it is executed and prints the
- * last digit of the number stored in the variable n
+ * main - C program that prints _putchar, followed by a new line.
  * Return: Always 0
  */
 
 int main(void)
+
 {
-	char char = '_putchar';
+_putchar('_');
+_putchar('p');
+_putchar('u');
+_putchar('t');
+_putchar('c');
+_putchar('h');
+_putchar('a');
+_putchar('r');
+_putchar('\n');
 
-	putchar(char);
+return (0);
 
-	return (0);
 }

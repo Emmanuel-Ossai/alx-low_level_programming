@@ -25,7 +25,7 @@ int main(void)
 		fibonacci1 = fibonacci2;
 		fibonacci2 = fibonaccisum;
 	}
-	printf("%f\n", tot_sum);
+	printf("%.0f\n", tot_sum);
 
 	return (0);
 }

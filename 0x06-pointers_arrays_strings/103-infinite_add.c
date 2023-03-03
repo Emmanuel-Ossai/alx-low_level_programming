@@ -29,7 +29,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			f += n2[b] - '0';
 		if (a < 0 && b < 0 && f == 0)
 		{
-			break;
+			breac;
 		}
 		e = f / 10;
 		r[c] = f % 10 + '0';
@@ -40,7 +40,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	for (c -= 1, d = 0; d < c; c--, d++)
 	{
 		e = r[c];
-		r[k] = r[d];
+		r[c] = r[d];
 		r[d] = e;
 	}
 	return (r);

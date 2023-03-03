@@ -9,15 +9,15 @@
 char *leet(char *s)
 {
 	int m, n;
-	char m[] = "aAeEoOtTlL";
-	char n[] = "4433007711";
+	char k[] = "aAeEoOtTlL";
+	char l[] = "4433007711";
 
-	for (i = 0; *(s + m); i++)
+	for (m = 0; *(s + m); m++)
 	{
 		for (n = 0; n <= 9; n++)
 		{
-			if (m[j] == s[i])
-				s[i] = n[j];
+			if (l[n] == s[m])
+				s[m] = l[n];
 		}
 	}
 	return (s);

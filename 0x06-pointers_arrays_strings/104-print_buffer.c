@@ -2,13 +2,10 @@
 #include <stdio.h>
 
 /**
- * print_buffer - a C function that prints a buffer.
- * print_line - prints bytes of a buffer
- * @b: buffer to be printed
- * @size: size of the buffer
- * @c: buffer to print
- * @s: bytes of buffer to print
- * @l: line of buffer to print
+ * print_line - a C function that prints bytes of a buffer
+ * @c: buffer to be printed
+ * @s: bytes of buffer to be printed
+ * @l: line of buffer to be printed
  * Return: 0
  */
 
@@ -35,6 +32,14 @@ void print_line(char *c, int s, int l)
 	}
 }
 
+
+
+/**
+ * print_buffer - a C function that prints a buffer.
+ * @b: buffer to be printed
+ * @size: size of the buffer
+ * Return: 0
+ */
 
 void print_buffer(char *b, int size)
 {

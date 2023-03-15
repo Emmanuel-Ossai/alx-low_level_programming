@@ -1,6 +1,9 @@
 #include "main.h"
 #include <stdlib.h>
 
+void util(char **, char *);
+void create_word(char **, char *, int, int, int);
+
 /**
  * strtow - a C function that splits a string into words.
  * @str: the string

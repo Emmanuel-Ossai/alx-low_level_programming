@@ -7,7 +7,7 @@
  * Return: 0
  */
 
-void print_all(const char * const format, ...);
+void print_all(const char * const format, ...)
 {
 	int i;
 	int flag;

@@ -1,7 +1,6 @@
-i#include "lists.h"
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include "lists.h"
+
 
 /**
  * list_len - a C function that returns the number of elements

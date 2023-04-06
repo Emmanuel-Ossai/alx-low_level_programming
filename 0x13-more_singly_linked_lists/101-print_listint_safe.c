@@ -6,30 +6,27 @@
  * rc - a C function that reallocates memory for an array pointers
  * @list: the old list
  * @size: size of the new list
- * @new: new node to be added to the list
+ * @nn: new node to be added to the list
  *
  * Return: the new list
  */
 
-const listint_t **rc(const listint_t **list, size_t size, const listint_t *new)
+const listint_t **rc(const listint_t **list, size_t size, const listint_t *nn)
 {
-	const listint_t **newlist;
+	const listint_t **currentlist;
 	size_t i;
 
-	newlist = malloc(size * sizeof(listint_t *));
-	if (newlist == NULL)
+	currentlist = malloc(size * sizeof(listint_t *));
+	if (currentlist == NULL)
 	{
 		free(list);
 		exit(98);
 	}
-	if (list != NULL)
-	{
-		for (i = 0; i < size - 1; i++)
-			newlist[i] = list[i];
-		free(list);
-	}
-	newlist[i] = new;
-	return (newlist);
+	for (i = 0; i < size - 1; i++)
+		currentlist[i] = list[i];
+	currentlist[i] = nn;
+	free(list);
+	return (currentlist);
 }
 
 /**
@@ -38,6 +35,7 @@ const listint_t **rc(const listint_t **list, size_t size, const listint_t *new)
  *
  * Return: the numberber of nodes in the list
  */
+
 
 size_t print_listint_safe(const listint_t *head)
 {
@@ -51,10 +49,8 @@ size_t print_listint_safe(const listint_t *head)
 			if (head == list[i])
 			{
 				printf("-> [%p] %d\n", (void *)head, head->n);
-				while (number-- > i)
-					free((void *)list[number]);
 				free(list);
-				return (i);
+				return (number);
 			}
 		}
 		number++;
@@ -62,8 +58,6 @@ size_t print_listint_safe(const listint_t *head)
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
 	}
-	while (number-- > 0)
-		free((void *)list[number]);
 	free(list);
 	return (number);
 }

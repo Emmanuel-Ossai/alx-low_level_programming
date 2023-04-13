@@ -29,19 +29,20 @@ void close_elf(int elf);
 
 void check_elf(unsigned char *e_ident)
 {
-	const unsigned char ELF_MAGIC[] = {0x7f, 'E', 'L', 'F'};
-	const int NUM_MAGIC = sizeof(ELF_MAGIC) / sizeof(unsigned char);
+	int index = 0;
 
-	for (int i = 0; i < NUM_MAGIC; i++)
+	while (index < 4)
 	{
-		if (e_ident[i] != ELF_MAGIC[i])
+		if (e_ident[index] != 127 &&
+				e_ident[index] != 'E' && e_ident[index] != 'L' && e_ident[index] != 'F')
 		{
-			fprintf(stderr, "Error: Not an ELF file\n");
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
 		}
+
+		index++;
 	}
 }
-
 
 /**
  * print_magic - a C function that prints the magic numbers of an ELF header.
@@ -190,7 +191,7 @@ void print_osabi(unsigned char *e_ident)
 
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI Version:                       %d\n",
+	printf("  ABI Version: %d\n",
 	       e_ident[EI_ABIVERSION]);
 }
 
@@ -271,7 +272,7 @@ void close_elf(int elf)
 
 /**
  * main - a C program that displays the information contained
- in the ELF header at the start of an ELF file.
+ * in the ELF header at the start of an ELF file.
  * @argc: argument count
  * @argv: argument vector
  *

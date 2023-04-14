@@ -5,7 +5,9 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+bool is_elf(const unsigned char *e_ident);
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
@@ -17,8 +19,23 @@ void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
+
+
 /**
-*check_elf - a C function that checks if a file is an ELF file.
+*is_elf - a C function that checks if a file is an ELF file.
+*@e_ident: pointer to an array containing ELF magic numbers.
+*
+* Return: 0,1,2 or 3
+**/
+
+bool is_elf(const unsigned char *e_ident)
+{
+	return (e_ident[0] == 0x7f && e_ident[1] == 'E' &&
+			e_ident[2] == 'L' && e_ident[3] == 'F');
+}
+
+/**
+*check_elf - a C function that prints error message if a file is an ELF file.
 *@e_ident: pointer to an array containing ELF magic numbers.
 *Description: This function checks if the given file is an ELF file by
 *verifying if its magic numbers are correct. If the file is not an ELF file,
@@ -28,18 +45,10 @@ void close_elf(int elf);
 
 void check_elf(unsigned char *e_ident)
 {
-	int index;
-
-	for (index = 0; index < 4; index++)
+	if (!is_elf(e_ident))
 	{
-		if (e_ident[index] != 127 &&
-		    e_ident[index] != 'E' &&
-		    e_ident[index] != 'L' &&
-		    e_ident[index] != 'F')
-		{
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-			exit(98);
-		}
+		dprintf(STDERR_FILENO, "Error: This is not an ELF file\n");
+		exit(98);
 	}
 }
 

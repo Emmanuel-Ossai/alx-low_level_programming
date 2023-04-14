@@ -35,14 +35,9 @@ void check_elf(unsigned char *e_ident)
 		if (e_ident[index] != 127 &&
 				e_ident[index] != 'E' && e_ident[index] != 'L' && e_ident[index] != 'F')
 		{
-<<<<<<< HEAD
 			dprintf(STDERR_FILENO, "Error: This is Not an ELF file\n");
-=======
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
->>>>>>> 4241dd9843754281124d7abfb7eb827ca7e91e90
 			exit(98);
 		}
-
 		index++;
 	}
 }
@@ -190,13 +185,8 @@ void print_osabi(unsigned char *e_ident)
  */
 void print_abi(unsigned char *e_ident)
 {
-<<<<<<< HEAD
 	printf(" ABI Version: %d\n",
 		e_ident[EI_ABIVERSION]);
-=======
-	printf("  ABI Version: %d\n",
-	       e_ident[EI_ABIVERSION]);
->>>>>>> 4241dd9843754281124d7abfb7eb827ca7e91e90
 }
 
 /**
@@ -273,17 +263,10 @@ void close_elf(int elf)
 }
 
 /**
-<<<<<<< HEAD
  * main - Displays the information contained in the
  * ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
-=======
- * main - a C program that displays the information contained
- * in the ELF header at the start of an ELF file.
- * @argc: argument count
- * @argv: argument vector
->>>>>>> 4241dd9843754281124d7abfb7eb827ca7e91e90
  *
  * Return: 0 on success.
  *

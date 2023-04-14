@@ -28,19 +28,21 @@ void close_elf(int elf);
 
 void check_elf(unsigned char *e_ident)
 {
-	int index = 0;
+	int index;
 
-	while (index < 4)
+	for (index = 0; index < 4; index++)
 	{
 		if (e_ident[index] != 127 &&
-				e_ident[index] != 'E' && e_ident[index] != 'L' && e_ident[index] != 'F')
+		    e_ident[index] != 'E' &&
+		    e_ident[index] != 'L' &&
+		    e_ident[index] != 'F')
 		{
-			dprintf(STDERR_FILENO, "Error: This is Not an ELF file\n");
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
 		}
-		index++;
 	}
 }
+
 
 /**
  * print_magic - Prints the magic numbers of an ELF header.

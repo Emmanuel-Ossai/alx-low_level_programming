@@ -77,28 +77,36 @@ void print_magic(unsigned char *e_ident)
 
 
 /**
- * print_class - Prints the class of an ELF header.
- * @e_ident: A pointer to an array containing the ELF class.
- */
+ * print_class - a C function that prints class of ELF header
+ * @e_ident: pointer to array containing ELF class
+ *
+ * Return: class
+ **/
+
 void print_class(unsigned char *e_ident)
 {
-	printf("  Class:                             ");
+	const char *class_str;
+	unsigned char class = e_ident[EI_CLASS];
 
-	switch (e_ident[EI_CLASS])
+	switch (class)
 	{
-	case ELFCLASSNONE:
-		printf("none\n");
-		break;
-	case ELFCLASS32:
-		printf("ELF32\n");
-		break;
-	case ELFCLASS64:
-		printf("ELF64\n");
-		break;
-	default:
-		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+		case ELFCLASSNONE:
+			class_str = "none";
+			break;
+		case ELFCLASS32:
+			class_str = "ELF32";
+			break;
+		case ELFCLASS64:
+			class_str = "ELF64";
+			break;
+		default:
+			printf("<unknown: %x>\n", class);
+			return;
 	}
+
+	printf("  Class:                             %s\n", class_str);
 }
+
 
 /**
  * print_data - Prints the data of an ELF header.

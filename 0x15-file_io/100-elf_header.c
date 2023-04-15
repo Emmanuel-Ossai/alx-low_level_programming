@@ -285,20 +285,25 @@ void print_elf_type(unsigned int e_type, unsigned char *e_ident)
 
 void print_entry_point(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf("  Entry point address:               ");
+	unsigned long int s_entry = e_entry;
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
-		e_entry = ((e_entry << 8) & 0xFF00FF00) |
-			  ((e_entry >> 8) & 0xFF00FF);
-		e_entry = (e_entry << 16) | (e_entry >> 16);
+		s_entry = ((s_entry << 8) & 0xFF00FF00) | ((s_entry >> 8) & 0xFF00FF);
+		s_entry = (s_entry << 16) | (s_entry >> 16);
 	}
 
+	printf("  Entry point address:               ");
 	if (e_ident[EI_CLASS] == ELFCLASS32)
-		printf("%#x\n", (unsigned int)e_entry);
+	{
+		unsigned int entry = (unsigned int) s_entry;
 
+		printf("%#x\n", entry);
+	}
 	else
-		printf("%#lx\n", e_entry);
+	{
+		printf("%#lx\n", s_entry);
+	}
 }
 
 /**

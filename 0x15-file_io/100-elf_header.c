@@ -325,35 +325,37 @@ void close_elf(int elf)
 
 
 /**
- * main - Displays the information contained in the
- *        ELF header at the start of an ELF file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - a C function that shows the information in the elf header
+ * @argc: arguments count
+ * @argv: arguments vector
  *
- * Return: 0 on success.
- *
- * Description: If the file is not an ELF File or
- *              the function fails - exit code 98.
- */
+ * Return: 0
+ **/
+
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	Elf64_Ehdr *header;
-	int o, r;
+	Elf64_Ehdr *header = NULL;
+	int o = 0, r = 0;
 
 	o = open(argv[1], O_RDONLY);
+
 	if (o == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
+
 	header = malloc(sizeof(Elf64_Ehdr));
+
 	if (header == NULL)
 	{
 		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
+
 	r = read(o, header, sizeof(Elf64_Ehdr));
+
 	if (r == -1)
 	{
 		free(header);
@@ -372,9 +374,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_abi_ver(header->e_ident);
 	print_elf_type(header->e_type, header->e_ident);
 	print_entry_point(header->e_entry, header->e_ident);
-
 	free(header);
 	close_elf(o);
 	return (0);
 }
-

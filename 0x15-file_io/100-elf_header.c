@@ -307,17 +307,18 @@ void print_entry_point(unsigned long int e_entry, unsigned char *e_ident)
 }
 
 /**
- * close_elf - Closes an ELF file.
- * @elf: The file descriptor of the ELF file.
+ * close_elf - a C function that closes ELF file
+ * @elf: elf file
  *
- * Description: If the file cannot be closed - exit code 98.
- */
+ **/
+
 void close_elf(int elf)
 {
-	if (close(elf) == -1)
+	int close_result = close(elf);
+
+	if (close_result == -1)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", elf);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
 }

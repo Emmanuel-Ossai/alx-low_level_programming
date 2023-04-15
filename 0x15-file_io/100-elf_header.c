@@ -13,11 +13,11 @@ void check_magic(unsigned char *e_ident);
 void check_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
-void print_abi(unsigned char *e_ident);
+void print_abi_ver(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_elf_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry_point(unsigned long int e_entry, unsigned char *e_ident);
-void elf_close(int elf);
+void close_elf(int elf);
 
 /**
 *is_elf - a C function that checks if a file is an ELF file.
@@ -299,12 +299,12 @@ void print_entry_point(unsigned long int e_entry, unsigned char *e_ident)
 
 
 /**
- * elf_close - Closes an ELF file.
+ * close_elf - Closes an ELF file.
  * @elf: The file descriptor of the ELF file.
  *
  * Description: If the file cannot be closed - exit code 98.
  */
-void elf_close(int elf)
+void close_elf(int elf)
 {
 	if (close(elf) == -1)
 	{
@@ -340,7 +340,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-		elf_close(o);
+		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
@@ -348,7 +348,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	if (r == -1)
 	{
 		free(header);
-		elf_close(o);
+		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
@@ -365,7 +365,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_entry_point(header->e_entry, header->e_ident);
 
 	free(header);
-	elf_close(o);
+	close_elf(o);
 	return (0);
 }
 

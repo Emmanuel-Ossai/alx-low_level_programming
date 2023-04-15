@@ -19,6 +19,7 @@ void print_elf_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry_point(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
+
 /**
 *is_elf - a C function that checks if a file is an ELF file.
 *@e_ident: pointer to an array containing ELF magic numbers.
@@ -31,6 +32,7 @@ bool is_elf(const unsigned char *e_ident)
 	return (e_ident[0] == 0x7f && e_ident[1] == 'E' &&
 			e_ident[2] == 'L' && e_ident[3] == 'F');
 }
+
 
 /**
 *check_elf - a C function that prints error message if a file is an ELF file.
@@ -275,6 +277,7 @@ void print_elf_type(unsigned int e_type, unsigned char *e_ident)
 	}
 }
 
+
 /**
  * print_entry_point - a C function that prints entry point of ELF header
  * @e_entry: address of elf entry point
@@ -305,6 +308,7 @@ void print_entry_point(unsigned long int e_entry, unsigned char *e_ident)
 		printf("%#lx\n", s_entry);
 	}
 }
+
 
 /**
  * close_elf - a C function that closes ELF file

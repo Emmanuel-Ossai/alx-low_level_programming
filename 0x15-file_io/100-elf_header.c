@@ -363,6 +363,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_abi_ver(header->e_ident);
 	print_elf_type(header->e_type, header->e_ident);
 	print_entry_point(header->e_entry, header->e_ident);
+
 	free(header);
 	elf_close(o);
 	return (0);

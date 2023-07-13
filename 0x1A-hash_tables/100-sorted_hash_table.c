@@ -172,7 +172,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	while (tmp != NULL)
 	{
 		if (strcmp(tmp->key, key) == 0)
-			(return) tmp->value;
+			return (tmp->value);
 
 		tmp = tmp->next;
 	}
